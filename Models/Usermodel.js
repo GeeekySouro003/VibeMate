@@ -33,7 +33,7 @@ const UserSchema=mongoose.Schema(
         workplace:String,
         relationship:String,
         followers:[],
-        following:[],
+        following:[]
 
     },
 
