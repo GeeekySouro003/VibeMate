@@ -1,16 +1,35 @@
 import mongoose from "mongoose";
 
-const PostSchema = mongoose.Schema(
-    {
-        profileId:{type:String,required:true},
-        desc:String,
-        likes:[],
-        comment:String,
-        image:String,
+const CommentSchema = mongoose.Schema(
+  {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Users", 
+      required: true,
     },
-    {
-        timestamps:true
-    }
-    );
-var Postmodel=mongoose.model("Posts",PostSchema);
+    text: {
+      type: String,
+      required: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+  },
+);
+
+const PostSchema = mongoose.Schema(
+  {
+    profileId: { type: String, required: true },
+    desc: String,
+    likes: [],
+    comments: [CommentSchema], // Add the comments field here
+    image: String,
+  },
+  {
+    timestamps: true,
+  },
+);
+
+const Postmodel = mongoose.model("Posts", PostSchema);
 export default Postmodel;
