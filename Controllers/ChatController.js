@@ -1,4 +1,4 @@
-import Chatmodel from "../Models/ChatModel";
+import Chatmodel from "../Models/ChatModel.js";
 
 
 export const crtChat=async(req,res) => {
@@ -27,6 +27,22 @@ export const userChat=async(req,res) => {
     }
     catch(err) {
         res.status(500).json(err);
+    }
+}
+
+export const findChat=async(req,res) => {
+    try{
+        const Chat=await Chatmodel.findOne(
+            {
+                members:{$all: [req.params.firstId,req.params.secondId]},
+            }
+        );
+        res.status(200).json(Chat);
+
+    }
+    catch(err) {
+        res.status(500).json(err)
+
     }
 }
 

@@ -6,6 +6,7 @@ import AuthRoute from './Routes/AuthRoute.js';
 import UserRoute from './Routes/UserRoute.js';
 import PostRoute from './Routes/PostRoute.js';
 import ChatRoute from './Routes/ChatRoute.js';
+import MessageRoutes from './Routes/MessageRoutes.js';
 const app=express();
 
 app.use(bodyParser.json({limit:'30mb',extended:true}))
@@ -30,3 +31,4 @@ mongoose
   app.use('/user',UserRoute)   
   app.use('/post',PostRoute)
   app.use('/chat',ChatRoute)
+  app.use('/messages',MessageRoutes)
