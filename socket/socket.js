@@ -18,4 +18,13 @@ const io = require("socket.io")(8100, {
       io.emit("get-users", activeUsers);
     });
 
+    socket.on("disconnect", () => {
+      // remove user from active users
+      activeUsers = activeUsers.filter((user) => user.socketId !== socket.id);
+      console.log("User Disconnected", activeUsers);
+      // send all active users to all users
+      io.emit("get-users", activeUsers);
+    });
+
+
 });
