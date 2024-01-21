@@ -23,7 +23,7 @@ const PostSchema = mongoose.Schema(
     profileId: { type: String, required: true },
     desc: String,
     likes: [],
-    comments: [CommentSchema], // Add the comments field here
+    comments: [CommentSchema], 
     image: String,
   },
   {
