@@ -26,5 +26,21 @@ const io = require("socket.io")(8100, {
       io.emit("get-users", activeUsers);
     });
 
+    //send message to specific users
+
+    socket.on("send-message", (data) => {
+      const{receivedId}=data;
+      const User=activeUsers.find((user) =>
+      
+        User.userId===receivedId);
+        console.log("Sending from socket to:",receivedId);
+        console.log("Data:",data);
+        if(User)
+        {
+          io.to(user.socketId).emit("receive message",data);
+        }
+      
+    })
+
 
 });
